@@ -12,12 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2021_01_31_021059) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "palettes", force: :cascade do |t|
     t.string "name"
     t.string "color1"
     t.string "color2"
     t.string "color3"
-    t.integer "pattern_id"
+    t.bigint "pattern_id"
     t.index ["pattern_id"], name: "index_palettes_on_pattern_id"
   end
 
@@ -26,4 +29,5 @@ ActiveRecord::Schema.define(version: 2021_01_31_021059) do
     t.string "style"
   end
 
+  add_foreign_key "palettes", "patterns"
 end
